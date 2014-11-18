@@ -36,4 +36,4 @@ Does not work with ILIAS >= `4.4.x`
 
 
 ### Important
-Do not delete the dummy folder in the /js directory that matches the plugin version (eg. /js/1-1-0).
+Do not delete the dummy folder in the /js directory that matches the plugin version (eg. /js/1-2-0).
