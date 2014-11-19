@@ -32,7 +32,7 @@ Enable the download of folders in the "Files and Folders" admin page!
 
 
 ### Known Issues
---
+none
 
 
 ### Important
