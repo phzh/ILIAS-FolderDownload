@@ -32,7 +32,7 @@ Enable the download of folders in the "Files and Folders" admin page!
 
 
 ### Known Issues
-Does not work with ILIAS >= `4.4.x`
+--
 
 
 ### Important
