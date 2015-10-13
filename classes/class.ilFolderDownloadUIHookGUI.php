@@ -70,8 +70,8 @@ class ilFolderDownloadUIHookGUI extends ilUIHookPluginGUI
 				$plugin_version = str_replace(".", "-", $this->plugin_object->getVersion());
 				
 				// add CSS
-				$tpl->addCss($this->plugin_object->getStyleSheetLocation("popup.css"));
-				$tpl->addJavaScript($this->plugin_object->getDirectory() . "/js/$plugin_version/../ilFolderDownload.js", false, 3);
+				$tpl->addCss($this->plugin_object->getStyleSheetLocation("popup.css?v=$plugin_version"));
+				$tpl->addJavaScript($this->plugin_object->getDirectory() . "/js/ilFolderDownload.js?v=$plugin_version", false, 3);
 				
 				// create options
 				$options = new stdClass();

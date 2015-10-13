@@ -20,11 +20,14 @@ Enable the download of folders in the "Files and Folders" admin page!
 
 
 ### History
+- 1.3.0
+  - Support for ILIAS 5.0 added.
+  - Added version parameter to Javascript- and CSS-files to ensure the client always receives the newest version.
 - 1.2.0	
-  - Fixed Support for ILIAS 4.4
+  - Support for ILIAS 4.4 added.
 - 1.1.0	
-  - Support for asynchronously loaded menus added (Administration > General Settings > Load Resource Action Lists Asynchronously)
-  - Support for multi download feature of ILIAS 4.4 added
+  - Support for asynchronously loaded menus added (Administration > General Settings > Load Resource Action Lists Asynchronously).
+  - Support for multi download feature of ILIAS 4.4 added.
   - Bugfix: JSON response is no longer sent when the file is delivered. Thus avoiding a warning in the error logs.
 
 - 1.0.0	
@@ -33,7 +36,3 @@ Enable the download of folders in the "Files and Folders" admin page!
 
 ### Known Issues
 none
-
-
-### Important
-Do not delete the dummy folder in the /js directory that matches the plugin version (eg. /js/1-2-0).

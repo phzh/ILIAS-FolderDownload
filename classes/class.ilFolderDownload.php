@@ -63,7 +63,7 @@ class ilFolderDownload
 		// for all objects that should be downloaded
 		if (count($ref_ids) > 0)
 		{
-			foreach ($ref_ids as $ref_id)
+            foreach ($ref_ids as $ref_id)
 			{
 				$obj_type = ilObject2::_lookupType($ref_id, true);
 
@@ -76,14 +76,12 @@ class ilFolderDownload
 				// has read access?
 				if (!$ilAccess->checkAccess("read", "", $ref_id, $obj_type))
 				{
-					return 20;
 					return false;
 				}
 
 				// in trash?
 				if (ilObject::_isInTrash($ref_id))
 				{
-					return 30;
 					return false;
 				}
 			}
@@ -92,7 +90,6 @@ class ilFolderDownload
 		}
 		else
 		{
-			return  40;
 			return false;
 		}
 	}
@@ -399,7 +396,7 @@ class ilFolderDownload
 				continue;
 			
 			// get object
-			$obj_type = ilObject::_lookupType($ref_id, true);
+			$obj_type = ilObject2::_lookupType($ref_id, true);
 			if ($obj_type == "fold")
 			{
 				// get child objects
@@ -743,144 +740,5 @@ class ilFolderDownload
 	{
 		$this->progress = $a_val;
 	}
-
-	
-	
-	///**
-	// * Gets .
-	// *
-	// * @return int The value.
-	// */
-	//function get()
-	//{
-	//	return $this->;
-	//}
-	
-	///**
-	// * Sets .
-	// *
-	// * @param int $a_val The new value.
-	// */
-	//function set($a_val)
-	//{
-	//	$this-> = $a_val;
-	//}
-
-	
-	///**
-	// * Set album ID
-	// *
-	// * @param string Album URL
-	// */
-	//function setAlbumId($a_val)
-	//{
-	//	$this->album_id = $a_val;
-	//}
-	
-	///**
-	// * Get album ID
-	// *
-	// * @return string Album URL
-	// */
-	//function getAlbumId()
-	//{
-	//	return $this->album_id;
-	//}
-	
-	///**
-	// * Sets the update mode
-	// * 
-	// * @param integer $a_val Update mode
-	// */
-	//function setUpdateMode($a_val)
-	//{
-	//	$this->update_mode = $a_val;
-	//}
-	
-	///**
-	// * Get the update mode
-	// * 
-	// * @return string Update mode
-	// */
-	//function getUpdateMode()
-	//{
-	//	return $this->update_mode;
-	//}
-	
-	///**
-	// * Sets the album XML definition
-	// * 
-	// * @param string $a_val Album XML definition
-	// */
-	//function setAlbumXml($a_val)
-	//{
-	//	$this->album_xml = $a_val;
-	//}
-	
-	///**
-	// * Gets the album XML definition
-	// * 
-	// * @return string Album XML definition
-	// */
-	//function getAlbumXml()
-	//{
-	//	return $this->album_xml;
-	//}
-	
-	///**
-	// * Gets the album represented by the XML definition.
-	// */
-	//function getAlbum()
-	//{
-	//	$xml = $this->getAlbumDefinition();
-	//	if ($xml !== false)
-	//	{
-	//		$useInternalErrors = libxml_use_internal_errors(true);
-
-	//		$xmlObj = simplexml_load_string($xml);
-	//		if ($xmlObj !== false)
-	//		{
-	//			libxml_use_internal_errors($useInternalErrors);
-	//			return $xmlObj;
-	//		}
-
-	//		// trace error
-	//		foreach(libxml_get_errors() as $error)
-	//			$errorText .= "<br/> - Line " . $error->line . ": " . $error->message;
-
-	//		ilUtil::sendFailure(sprintf($this->txt("xml_album_error"), $this->getAlbumId(), $errorText), false);
-
-	//		libxml_clear_errors();
-	//		libxml_use_internal_errors($useInternalErrors);
-	//	}
-
-	//	return false;
-	//}
-	
-	//static function getAlbumList($userEmail)
-	//{
-	//	$xml = self::downloadAlbumListXml($userEmail);
-	//	if ($xml !== false)
-	//	{
-	//		$useInternalErrors = libxml_use_internal_errors(true);
-			
-	//		$xmlObj = simplexml_load_string($xml);
-	//		if ($xmlObj !== false)
-	//		{
-	//			libxml_use_internal_errors($useInternalErrors);
-	//			return $xmlObj;
-	//		}
-			
-	//		// trace error
-	//		foreach(libxml_get_errors() as $error)
-	//			$errorText .= "<br/> - Line " . $error->line . ": " . $error->message;
-			
-	//		ilUtil::sendFailure(sprintf($this->txt("xml_album_error"), $this->getAlbumId(), $errorText), false);
-			
-	//		libxml_clear_errors();
-	//		libxml_use_internal_errors($useInternalErrors);
-	//	}
-	//	return false;
-	//}
 }
 ?>

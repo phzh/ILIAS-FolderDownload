@@ -10,25 +10,25 @@
     // TODO: change to false!!!
     var DEBUG_ENABLED = false;
 
-	// logging also in IE
-	if (Function.prototype.bind && console && typeof console.log == "object") {
-		["log", "info", "warn", "error", "assert", "dir", "clear", "profile", "profileEnd"].forEach(function (e) {
-			console[e] = this.call(console[e], console)
-		}, Function.prototype.bind)
-	}
-	var konsole = {
-		log: function (e) {
-		}, dir: function (e) {
-		}
-	};
-	if (typeof window.console != "undefined" && typeof window.console.log == "function") {
-		konsole = window.console;
-		if (DEBUG_ENABLED) konsole.log("konsole initialized")
-	}
-	function log() {
-		if (DEBUG_ENABLED) konsole.log.apply(konsole, arguments)
-	}
-	// end log
+    // logging also in IE
+    if (Function.prototype.bind && console && typeof console.log == "object") {
+        ["log", "info", "warn", "error", "assert", "dir", "clear", "profile", "profileEnd"].forEach(function (e) {
+            console[e] = this.call(console[e], console)
+        }, Function.prototype.bind)
+    }
+    var konsole = {
+        log: function (e) {
+        }, dir: function (e) {
+        }
+    };
+    if (typeof window.console != "undefined" && typeof window.console.log == "function") {
+        konsole = window.console;
+        if (DEBUG_ENABLED) konsole.log("konsole initialized")
+    }
+    function log() {
+        if (DEBUG_ENABLED) konsole.log.apply(konsole, arguments)
+    }
+    // end log
 
     var ilDownloadArguments = function ()
     {
@@ -84,9 +84,13 @@
          */
         function modifyFolderLinks(elementId)
         {
-            var $element = elementId != null ? $("#" + elementId) : undefined;
-            var selectorPrefix = elementId != null ? "" : "div.il_adv_sel ";
-            $(selectorPrefix + "a[href*='cmd=downloadFolder']", $element).each(function ()
+            var $element;
+            if (elementId != null)
+                $element = $("#" + elementId);
+            else
+                $element = $("ul[id^='ilAdvSelListTable_'], div[id^='ilAdvSelListTable_']");
+
+            $element.find("a[href*='cmd=downloadFolder']").each(function ()
             {
                 modifyActionMenuLink($(this));
             });
@@ -98,7 +102,7 @@
         function modifyToolbarLinks()
         {
             // attach to download button from multi download
-            $("div.ilToolbar input[name='cmd[download]']").each(function ()
+            $("div.ilToolbar, nav.ilToolbar").find("input[name='cmd[download]']").each(function ()
             {
                 modifyMultiDownloadButton($(this));
             });
@@ -148,7 +152,7 @@
             executeCommand("validate", { refId: args.refIds }, function (result)
             {
                 // if the validation failed, just run the original download url
-	            console.log(result);
+                console.log(result);
                 if (result.validated)
                 {
                     args.downloadId = result.downloadId;
@@ -395,14 +399,14 @@
             // get default link and ref id
             var overlayId = $link.attr("id").replace(/_$/, '');
             var href = $link.attr("href");
-	        var splitted = overlayId.match(/act_([0-9]*)/im);
+            var splitted = overlayId.match(/act_([0-9]*)/im);
 
 
             //var refId = overlayId.substr(overlayId.lastIndexOf("_") + 1);
-	        var refId = splitted[1];
+            var refId = splitted[1];
 
 
-            $tr = $link.closest("tr");
+            $tr = $link.closest("tr[onclick], li[onclick]");
 
             // remove links
             $link.attr({ "href": "#", "onclick": "return false;" });
@@ -415,12 +419,14 @@
                 args.titleId = refId;
                 args.url = href;
 
+                il.Overlay.hideAllOverlays();
                 startDownload();
 
-                if (!il.AdvancedSelectionList)
+                /*if (!il.AdvancedSelectionList)
                     ilAdvancedSelectionList.clickNop(overlayId);
                 else
                     il.AdvancedSelectionList.clickNop(overlayId);
+                */
 
                 return false;
             });
