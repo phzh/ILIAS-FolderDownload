@@ -419,14 +419,8 @@
                 args.titleId = refId;
                 args.url = href;
 
-                il.Overlay.hideAllOverlays();
+                il.Overlay.hideAllOverlays(e, true);
                 startDownload();
-
-                /*if (!il.AdvancedSelectionList)
-                    ilAdvancedSelectionList.clickNop(overlayId);
-                else
-                    il.AdvancedSelectionList.clickNop(overlayId);
-                */
 
                 return false;
             });
