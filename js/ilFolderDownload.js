@@ -152,7 +152,6 @@
             executeCommand("validate", { refId: args.refIds }, function (result)
             {
                 // if the validation failed, just run the original download url
-                console.log(result);
                 if (result.validated)
                 {
                     args.downloadId = result.downloadId;
